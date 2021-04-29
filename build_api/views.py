@@ -150,7 +150,7 @@ class CheckOut(APIView):
         data=request.data
         serializer = CheckoutSerializer(data=data, context={'request': request})
         print("this is serialized data", serializer)
-        cakes_id = AddCaketoCart.objects.filter(email=data['email'])
+        cakes_id = AddCaketoCart.objects.filter(email=data['email']).delete()
         # cakes_id.Add
         # cakes_id.clear()
 
