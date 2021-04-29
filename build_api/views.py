@@ -150,10 +150,16 @@ class CheckOut(APIView):
         data=request.data
         serializer = CheckoutSerializer(data=data, context={'request': request})
         print("this is serialized data", serializer)
+        cakes_id = AddCaketoCart.objects.filter(email=data['email'])
+        # cakes_id.Add
+        # cakes_id.clear()
+
         if serializer.is_valid():
             serializer.save()
             print(serializer.data)
             return Response(response_generator(data=serializer.data, message='success', status=201))
+
+
         # print(serializer.errors)
         return Response(response_generator(data=serializer.errors, message='error', status=400))
 
